@@ -13,6 +13,13 @@ sudo mv flash /usr/local/bin/flash
 flash --hostname orange https://github.com/hypriot/image-builder-rpi/releases/download/v1.2.0/hypriotos-rpi-v1.2.0.img.zip
 ```
 
+SSH into the RPi. Update Docker if you like, enable ping
+
+```bash
+sudo apt-get update && sudo apt-get install docker-engine
+sudo setcap cap_net_raw+ep /bin/ping
+```
+
 ### UP Board
 
 Download Ubuntu as described in
