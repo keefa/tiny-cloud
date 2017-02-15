@@ -4,7 +4,7 @@
 
 ### Raspberry Pi 3
 
-Download flash tool and flash latest HypriotOS
+Download flash tool and flash latest HypriotOS to SD card.
 
 ```bash
 curl -O https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash
@@ -34,3 +34,10 @@ sudo apt-get autoremove --purge 'linux-.*generic'
 sudo apt-get install -y avahi-daemon openssh-server
 ```
 
+- Install Docker and Compose
+
+```bash
+curl -SsL https://get.docker.com | sudo sh
+curl -L https://github.com/docker/compose/releases/download/1.11.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
