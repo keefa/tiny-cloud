@@ -38,6 +38,8 @@ sudo apt-get install -y avahi-daemon openssh-server
 
 ```bash
 curl -SsL https://get.docker.com | sudo sh
-curl -L https://github.com/docker/compose/releases/download/1.11.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.11.1/docker-compose-`uname -s`-`uname -m` > docker-compose
+chmod +x docker-compose
+sudo mv docker-compose /usr/local/bin/docker-compose
+sudo gpasswd -a ${USER} docker
 ```
