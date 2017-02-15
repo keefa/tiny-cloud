@@ -23,7 +23,9 @@ docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
 
 ## PLOSSYS Blinkt!
 
+Problem: We need `--privileged`, https://github.com/docker/docker/issues/24862
+
 ```bash
-docker service create --name blinkt plossys/blinkt
+docker service create --name=blinkt --with-registry-auth plossys/blinkt:latest
 docker service scale blinkt=3
 ```
