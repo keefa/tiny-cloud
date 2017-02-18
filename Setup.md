@@ -41,9 +41,8 @@ Enable SSH in advanced options.
 
 ```bash
 curl -SsL https://get.docker.com | sudo sh
-curl -L https://github.com/docker/compose/releases/download/1.11.1/docker-compose-`uname -s`-`uname -m` > docker-compose
-chmod +x docker-compose
-sudo mv docker-compose /usr/local/bin/docker-compose
+sudo apt-get install -y python-pip
+sudo pip install docker-compose
 sudo gpasswd -a ${USER} docker
 ```
 
