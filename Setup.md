@@ -50,3 +50,12 @@ chmod +x docker-compose
 sudo mv docker-compose /usr/local/bin/docker-compose
 sudo gpasswd -a ${USER} docker
 ```
+
+- Remove apparmor
+
+The easiest way to make plossys/blinkt work without privileged to demo mulitarch swarm-mode.
+
+```bash
+sudo apt-get remove apparmor
+```
+
