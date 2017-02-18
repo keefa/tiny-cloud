@@ -4,6 +4,8 @@
 
 ### Raspberry Pi 3
 
+#### HypriotOS
+
 Download flash tool and flash latest HypriotOS to SD card.
 
 ```bash
@@ -18,6 +20,31 @@ SSH into the RPi. Update Docker if you like, enable ping
 ```bash
 sudo apt-get update && sudo apt-get install docker-engine
 sudo setcap cap_net_raw+ep /bin/ping
+```
+
+#### Raspbian Lite
+
+```bash
+curl -O https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash
+chmod +x flash
+sudo mv flash /usr/local/bin/flash
+flash https://downloads.raspberrypi.org/raspbian_latest
+```
+
+Login on console and run
+
+```bash
+sudo raspi-config
+```
+
+Enable SSH in advanced options.
+
+```bash
+curl -SsL https://get.docker.com | sudo sh
+curl -L https://github.com/docker/compose/releases/download/1.11.1/docker-compose-`uname -s`-`uname -m` > docker-compose
+chmod +x docker-compose
+sudo mv docker-compose /usr/local/bin/docker-compose
+sudo gpasswd -a ${USER} docker
 ```
 
 ### UP Board
