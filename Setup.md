@@ -21,11 +21,20 @@ users:
     ssh-import-id: None
     lock_passwd: true
     ssh-authorized-keys:
-      - ssh-rsa AAAAB3Nz...vuz3YRmWNN user@client
+      - ssh-rsa AAAAB3Nz...vuz3YRmWNN
+write_files:
+-   content: |
+        {
+          "labels": [ "os=linux", "arch=arm" ],
+          "experimental": true
+        }
+    owner: root:root
+    path: /etc/docker/daemon.json
 runcmd:
  - [ systemctl, restart, avahi-daemon ]
+ - [ systemctl, restart, docker ]
  - [ setcap, cap_net_raw+ep, /bin/ping ]
- ```
+```
 
 Now download flash tool and flash latest HypriotOS with cloud-init support to SD card.
 
