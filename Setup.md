@@ -34,8 +34,7 @@ curl -O https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash
 chmod +x flash
 sudo mv flash /usr/local/bin/flash
 vi user-data
-touch meta-data
-flash --hostname purple -u ./user-data -m ./meta-data https://github.com/StefanScherer/image-builder-rpi/releases/download/v1.4.0/hypriotos-rpi-v1.4.0.img.zip
+flash --hostname purple -u ./user-data https://github.com/StefanScherer/image-builder-rpi/releases/download/v1.4.0/hypriotos-rpi-v1.4.0.img.zip
 ```
 
 The `flash` script overwrites the hostname in the `user-data` file, so you can just change the command to flash mulitple SD cards.
