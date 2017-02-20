@@ -48,6 +48,16 @@ flash --hostname purple -u ./user-data https://github.com/StefanScherer/image-bu
 
 The `flash` script overwrites the hostname in the `user-data` file, so you can just change the command to flash mulitple SD cards.
 
+##### user-data template
+
+To flash multiple "colored" boards, define a template for `user-data` with the filename `user-data.template`. The placeholders `<color>` and `<ssh-key>` in the template file will be replaced by the actual data. Then run `flash-color.sh` and provide the color as a parameter.
+
+To e.g. flash an "orange" board, type:
+
+```bash
+./flash-color.sh orange
+```
+
 #### Raspbian Lite
 
 ```bash
@@ -110,4 +120,3 @@ The easiest way to make plossys/blinkt work without privileged to demo mulitarch
 ```bash
 sudo apt-get remove apparmor
 ```
-

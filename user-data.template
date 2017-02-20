@@ -1,0 +1,25 @@
+#cloud-config
+hostname: <color>
+manage_etc_hosts: true
+users:
+  - name: pirate
+    primary-group: users
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users,docker
+    ssh-import-id: None
+    lock_passwd: true
+    ssh-authorized-keys:
+      - ssh-rsa <ssh-key>
+write_files:
+-   content: |
+        {
+          "labels": [ "os=linux", "arch=arm" ],
+          "experimental": true
+        }
+    owner: root:root
+    path: /etc/docker/daemon.json
+runcmd:
+ - [ systemctl, restart, avahi-daemon ]
+ - [ systemctl, restart, docker ]
+ - [ setcap, cap_net_raw+ep, /bin/ping ]
