@@ -6,21 +6,39 @@
 
 #### HypriotOS
 
-Download flash tool and flash latest HypriotOS to SD card.
+Create a `user-data` file to customize the Raspberry Pi on first boot.
+
+```yaml
+#cloud-config
+hostname: black-pearl
+manage_etc_hosts: true
+users:
+  - name: pirate
+    primary-group: users
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users,docker
+    ssh-import-id: None
+    lock_passwd: true
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3Nz...vuz3YRmWNN user@client
+runcmd:
+ - [ systemctl, restart, avahi-daemon ]
+ - [ setcap, cap_net_raw+ep, /bin/ping ]
+ ```
+
+Now download flash tool and flash latest HypriotOS with cloud-init support to SD card.
 
 ```bash
 curl -O https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash
 chmod +x flash
 sudo mv flash /usr/local/bin/flash
-flash --hostname orange https://github.com/hypriot/image-builder-rpi/releases/download/v1.2.0/hypriotos-rpi-v1.2.0.img.zip
+vi user-data
+touch meta-data
+flash --hostname purple -u ./user-data -m ./meta-data https://github.com/StefanScherer/image-builder-rpi/releases/download/v1.4.0/hypriotos-rpi-v1.4.0.img.zip
 ```
 
-SSH into the RPi. Update Docker if you like, enable ping
-
-```bash
-sudo apt-get update && sudo apt-get install docker-engine
-sudo setcap cap_net_raw+ep /bin/ping
-```
+The `flash` script overwrites the hostname in the `user-data` file, so you can just change the command to flash mulitple SD cards.
 
 #### Raspbian Lite
 
