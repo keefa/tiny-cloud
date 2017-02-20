@@ -7,7 +7,7 @@ if [ -z ${color} ]; then
   exit 1
 fi
 
-key="$(cat ~/.ssh/id_rsa.pub | cut -d' ' -f2)"
+key="$(cat ~/.ssh/id_rsa.pub)"
 
 sed "s|<color>|${color}|" user-data.template | sed "s|<ssh-key>|${key}|" > user-data.generated
 
