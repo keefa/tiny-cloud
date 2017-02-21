@@ -2,15 +2,15 @@
 hostname: <color>
 manage_etc_hosts: true
 users:
-  - name: pirate
+  - name: <user>
     primary-group: users
     shell: /bin/bash
     sudo: ALL=(ALL) NOPASSWD:ALL
-    groups: users,docker
+    groups: users,docker,adm,dialout,audio,plugdev,netdev,video,spi,i2c,gpio
     ssh-import-id: None
     lock_passwd: true
     ssh-authorized-keys:
-      - <ssh-key>
+      - ssh-rsa AAAAB3Nz...vuz3YRmWNN
 write_files:
 -   content: |
         {
@@ -22,4 +22,5 @@ write_files:
 runcmd:
  - [ systemctl, restart, avahi-daemon ]
  - [ systemctl, restart, docker ]
- - [ setcap, cap_net_raw+ep, /bin/ping ]
+ - [ docker, pull, plossys/blinkt ]
+ - [ docker, pull, sealsystems/visualizer:latest-arm ]

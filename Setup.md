@@ -4,20 +4,18 @@
 
 ### Raspberry Pi 3
 
-#### HypriotOS
-
 Create a `user-data` file to customize the Raspberry Pi on first boot.
 
 ```yaml
 #cloud-config
-hostname: black-pearl
+hostname: purple
 manage_etc_hosts: true
 users:
-  - name: pirate
+  - name: pi
     primary-group: users
     shell: /bin/bash
     sudo: ALL=(ALL) NOPASSWD:ALL
-    groups: users,docker
+    groups: users,docker,adm,dialout,audio,plugdev,netdev,video,spi,i2c,gpio
     ssh-import-id: None
     lock_passwd: true
     ssh-authorized-keys:
@@ -33,53 +31,30 @@ write_files:
 runcmd:
  - [ systemctl, restart, avahi-daemon ]
  - [ systemctl, restart, docker ]
- - [ setcap, cap_net_raw+ep, /bin/ping ]
+ - [ docker, pull, plossys/blinkt ]
+ - [ docker, pull, sealsystems/visualizer:latest-arm ]
 ```
 
-Now download flash tool and flash latest HypriotOS with cloud-init support to SD card.
+Now download flash tool and flash latest Raspbian with cloud-init support to SD card.
 
 ```bash
 curl -O https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash
 chmod +x flash
 sudo mv flash /usr/local/bin/flash
 vi user-data
-flash --hostname purple -u ./user-data https://github.com/StefanScherer/image-builder-rpi/releases/download/v1.4.0/hypriotos-rpi-v1.4.0.img.zip
+flash --hostname purple -u ./user-data https://github.com/StefanScherer/pi-gen/releases/download/v1.2.0/image_2017-02-21-Raspbian-lite.zip
 ```
 
 The `flash` script overwrites the hostname in the `user-data` file, so you can just change the command to flash mulitple SD cards.
 
 ##### user-data template
 
-To flash multiple "colored" boards, define a template for `user-data` with the filename `user-data.template`. The placeholders `<color>` and `<ssh-key>` in the template file will be replaced by the actual data. Then run `flash-color.sh` and provide the color as a parameter.
+To flash multiple "colored" boards, define a template for `user-data` with the filename `user-data.template.yml`. The placeholders `<color>` and `<ssh-key>` in the template file will be replaced by the actual data. Then run `flash-color.sh` and provide the color as a parameter.
 
 To e.g. flash an "orange" board, type:
 
 ```bash
 ./flash-color.sh orange
-```
-
-#### Raspbian Lite
-
-```bash
-curl -O https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash
-chmod +x flash
-sudo mv flash /usr/local/bin/flash
-flash https://downloads.raspberrypi.org/raspbian_latest
-```
-
-Login on console and run
-
-```bash
-sudo raspi-config
-```
-
-Enable SSH in advanced options.
-
-```bash
-curl -SsL https://get.docker.com | sudo sh
-sudo apt-get install -y python-pip
-sudo pip install docker-compose
-sudo gpasswd -a ${USER} docker
 ```
 
 ### UP Board
