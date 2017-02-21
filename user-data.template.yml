@@ -10,7 +10,7 @@ users:
     ssh-import-id: None
     lock_passwd: true
     ssh-authorized-keys:
-      - ssh-rsa AAAAB3Nz...vuz3YRmWNN
+      - <ssh-key>
 write_files:
 -   content: |
         {
