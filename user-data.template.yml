@@ -22,5 +22,5 @@ write_files:
 runcmd:
  - [ systemctl, restart, avahi-daemon ]
  - [ systemctl, restart, docker ]
- - [ docker, pull, plossys/blinkt ]
- - [ docker, pull, sealsystems/visualizer:latest-arm ]
+# - [ docker, pull, plossys/blinkt ]
+# - [ docker, pull, sealsystems/visualizer:latest-arm ]
