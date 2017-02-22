@@ -42,7 +42,7 @@ curl -O https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash
 chmod +x flash
 sudo mv flash /usr/local/bin/flash
 vi user-data
-flash --hostname purple -u ./user-data https://github.com/StefanScherer/pi-gen/releases/download/v1.2.0/image_2017-02-21-Raspbian-lite.zip
+flash --hostname purple -u ./user-data https://github.com/sealsystems/pi-gen/releases/download/v1.3.3/image_2017-02-22-pi-cloud-lite.zip
 ```
 
 The `flash` script overwrites the hostname in the `user-data` file, so you can just change the command to flash mulitple SD cards.
