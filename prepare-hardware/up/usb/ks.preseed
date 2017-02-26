@@ -22,7 +22,7 @@ d-i partman-partitioning/no_bootable_gpt_biosgrub boolean false
 d-i partman-partitioning/no_bootable_gpt_efi boolean false
 d-i partman-efi/non_efi_system boolean true
 
-d-i pkgsel/include string openssh-server ntp curl nfs-common linux-headers-$(uname -r) build-essential perl dkms
+d-i pkgsel/include string openssh-server ntp curl nfs-common linux-headers-$(uname -r) build-essential perl dkms avahi-daemon
 d-i pkgsel/install-language-support boolean false
 # Policy for applying updates.  May be "none" (no automatic updates),
 # "unattended-upgrades" (install security updates automatically), or
