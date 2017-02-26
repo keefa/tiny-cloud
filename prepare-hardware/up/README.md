@@ -38,6 +38,6 @@ Then follow these instructions to boot from USB stick and start the unattended i
 - Press 4x `CURSOR RIGHT` to select the Boot configuration.
 - Press 2x `CURSOR DOWN` to select Boot Option #1.
 - Press `ENTER` to open the options.
-- Press `CURSOR UP` to select UEFI USB stick.
+- Press `PAGE UP` to select UEFI USB stick.
 - Press `ENTER` to select the UEFI USB stick.
 - Press `F4` to save and then press `ENTER` to exit the BIOS setup.
