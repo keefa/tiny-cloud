@@ -1,8 +1,4 @@
-# Setup
-
-## Nodes
-
-### Raspberry Pi 3
+# Prepare Raspberry Pi 3
 
 Create a `user-data` file to customize the Raspberry Pi on first boot.
 
@@ -31,8 +27,6 @@ write_files:
 runcmd:
  - [ systemctl, restart, avahi-daemon ]
  - [ systemctl, restart, docker ]
- - [ docker, pull, plossys/blinkt ]
- - [ docker, pull, sealsystems/visualizer:latest-arm ]
 ```
 
 Now download flash tool and flash latest Raspbian with cloud-init support to SD card.
@@ -55,43 +49,4 @@ To e.g. flash an "orange" board, type:
 
 ```bash
 ./flash-color.sh orange
-```
-
-### UP Board
-
-Download Ubuntu as described in
-- https://up-community.org/downloads/ubuntu
-- https://up-community.org/wiki/Ubuntu
-- Write Ubuntu ISO to bootable USB stick
-- Install Ubuntu
-- Install UP kernel
-
-```bash
-sudo add-apt-repository ppa:ubilinux/up
-sudo apt update
-sudo apt install linux-upboard
-sudo apt-get autoremove --purge 'linux-.*generic'
-```
-- Install AVAHI and SSH
-
-```bash
-sudo apt-get install -y avahi-daemon openssh-server
-```
-
-- Install Docker and Compose
-
-```bash
-curl -SsL https://get.docker.com | sudo sh
-curl -L https://github.com/docker/compose/releases/download/1.11.1/docker-compose-`uname -s`-`uname -m` > docker-compose
-chmod +x docker-compose
-sudo mv docker-compose /usr/local/bin/docker-compose
-sudo gpasswd -a ${USER} docker
-```
-
-- Remove apparmor
-
-The easiest way to make plossys/blinkt work without privileged to demo mulitarch swarm-mode.
-
-```bash
-sudo apt-get remove apparmor
 ```

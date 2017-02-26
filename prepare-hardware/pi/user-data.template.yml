@@ -2,7 +2,7 @@
 hostname: <color>
 manage_etc_hosts: true
 users:
-  - name: <user>
+  - name: pirate
     primary-group: users
     shell: /bin/bash
     sudo: ALL=(ALL) NOPASSWD:ALL
@@ -22,5 +22,3 @@ write_files:
 runcmd:
  - [ systemctl, restart, avahi-daemon ]
  - [ systemctl, restart, docker ]
-# - [ docker, pull, plossys/blinkt ]
-# - [ docker, pull, sealsystems/visualizer:latest-arm ]
