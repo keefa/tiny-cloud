@@ -1,0 +1,18 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "windows_10_15031"
+  config.vm.provider "vmware_fusion" do |v|
+    v.gui = true
+    v.memory = "2048"
+
+    v.vmx["usb.pcislotnumber"] = "32"
+    v.vmx["usb.present"] = "TRUE"
+    v.vmx["usb_xhci.present"] = "TRUE"
+    v.vmx["usb.vbluetooth.startConnected"] = "FALSE"
+    v.vmx["usb_xhci.pciSlotNumber"] = "224"
+    v.vmx["usb_xhci:4.present"] = "TRUE"
+    v.vmx["usb_xhci:4.deviceType"] = "hid"
+    v.vmx["usb_xhci:4.port"] = "4"
+    v.vmx["usb_xhci:4.parent"] = "-1"
+
+  end
+end
