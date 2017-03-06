@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="Basisplatte.svg">
+   sodipodi:docname="Base.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,15 +26,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="375"
+     inkscape:cx="-112.14286"
      inkscape:cy="520"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      width="400mm"
-     inkscape:window-width="1280"
-     inkscape:window-height="657"
-     inkscape:window-x="-8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="1592"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -56,7 +56,7 @@
      transform="translate(0,10.629918)">
     <path
        style="display:inline;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.354;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 24.782147,2.7764943 1168.252853,-9e-4 0.1869,212.4212057 10.5365,0 0,354.33079 -10.5365,0 -0.1869,212.4204 -1168.252853,8e-4 -0.1868,-212.4212 -11.211,0 0,-354.33079 11.211,0 z"
+       d="m 24.782147,-4.3117515 1168.252853,-9e-4 0.1869,219.5094515 10.5365,0 0,354.33079 -10.5365,0 -0.1869,219.50627 -1168.252853,8e-4 -0.1868,-219.50707 -11.211,0 0,-354.33079 11.211,0 z"
        id="rect5806"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccccccc" />
