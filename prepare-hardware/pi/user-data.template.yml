@@ -2,6 +2,17 @@
 hostname: <color>
 manage_etc_hosts: true
 users:
+  - name: pirate
+    primary-group: users
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users,docker,adm,dialout,audio,plugdev,netdev,video
+    ssh-import-id: None
+    lock_passwd: true
+    ssh-authorized-keys:
+      - <ssh-key>
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtL9yoUmFuuqU8hzeGw+ycDDVXrloQPfC+kCLF2h4wqYkfk5eglrlQGYoh4SMM70pzzHpUL8l8eF1N+3kiCXZieMPnrgqt/2d6yvC3nBOQc72UKD13mztEpWYJrj11OaXP9NjDaRNYyRFEqs4+LbM1xfv1HIz7KoBIvQdIpxEW4vqwOo47VGN0+M3QYo5iiU5oe0p/Kjrvq9HM0Bi535SnG3OdeVk5CKfbdJdI0CjF56yarlcFQA+GMT1QQLHyt96TmNUN/3Cxlc55Pq9KiazeT4eNzH+DdDP/afrYzIQ/t1fnvIoXlLjMtisS8IbCHXtlSfrOaXZ+T13si8vZpkpb seal
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC87nvCwiQHNYpCP+20Sk6VDpmAzHU61qkihOXZm5X98iGQU/lxBzFCYIlsIUzfdDZAEB8xjEuuNjR4AXBB0SWD67C6ez40keGe0xo7dYRaMRM/p4wU8WYedxU9y7KLWU3MK+6K8EtJUTqkVQ/OGzViAEfTACheJRwsCdu7LWju1XjeK/SdFijRoN8FE2UModLyUnwdgTQNc6xQZq0Qz+Yt9EpHeNI8MgezXb+lGWJ/OAoPg5uqpAyfBZwlo2r+efKmSdY/48T3gIZxkHdatTZ2qbQ7DZef/7nYz+TH957LxepdPawLWngtYBUuDbvV3bBudaKtQc2oGbvuz3YRmWNN stefan
   - name: <user>
     primary-group: users
     shell: /bin/bash
@@ -22,3 +33,4 @@ write_files:
 runcmd:
  - [ systemctl, restart, avahi-daemon ]
  - [ systemctl, restart, docker ]
+ - [ setcap, cap_net_raw+ep, /bin/ping ]
