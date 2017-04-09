@@ -11,4 +11,4 @@ key="$(cat ~/.ssh/id_rsa.pub)"
 arch="arm"
 sed "s|<color>|${color}|" user-data.template.yml | sed "s|<user>|${USER}|" | sed "s|<ssh-key>|${key}|" | sed "s|<arch>|${arch}|"> user-data.generated
 
-flash --hostname ${color} -u ./user-data.generated https://github.com/sealsystems/pi-gen/releases/download/v1.4.1/2017-03-08-pi-cloud-lite.zip
+flash --hostname ${color} -u ./user-data.generated https://github.com/sealsystems/pi-gen/releases/download/v1.5.0/2017-04-09-pi-cloud-lite.zip
