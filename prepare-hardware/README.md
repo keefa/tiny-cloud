@@ -25,4 +25,5 @@ Ubuntu and Docker.
 You can choose one of these operating systems to run Docker on it:
 
 - Ubuntu Linux, Intel 64bit
-- Windows 10, Intel 64bit
+- Windows Server 2016 Core, Intel 64bit
+- Windows 10, Intel 64bit (with Hyper-V + Hyper-V containers only)
