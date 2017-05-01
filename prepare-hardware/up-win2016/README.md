@@ -118,3 +118,10 @@ robocopy /s /e extracted $usb\
 # Split install.wim for FAT32 on USB
 dism /Split-Image /ImageFile:install.wim /SWMFile:$usb\sources\install.swm /FileSize:4096
 ```
+
+## Boot from USB
+
+Plug in the USB stick, turn on the UP board and press `ESC` for some seconds. Enter BIOS and select the USB stick as first boot device.
+
+In the partition dialog delete all previous (eg. Linux) partitions and create a new one. It will create all partitions needed to install Windows Server 2016.
+Answer the few questions and select the Windows Server 2016 Datacenter (third row).
