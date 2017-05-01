@@ -1,6 +1,14 @@
 # UP Board with Windows Server 2016
 
+You can install Windows Server 2016 on your UP board with a prepared USB stick.
+
+## Vagrant
+
+I use a Vagrant box with Windows 10 from my Mac to create the USB stick. The `Vagrantfile` just spins up a VM that has the USB driver activated so you can attach the USB stick into the VM.
+
 ## Create a bootable USB disk
+
+Now insert the USB stick and attach it to the VM. We have to format the USB stick and make it bootable.
 
 https://technet.microsoft.com/en-us/library/dn621902.aspx
 
@@ -58,11 +66,16 @@ Leaving DiskPart...
 
 ## Copy files
 
+There are several steps to copy all files to the USB stick.
+
 The most part of the following steps are from Patrick Lang's gist https://gist.github.com/PatrickLang/820aa9e8c60654da051c139fb245fae8
 Thanks Patrick for all the details.
 
-Thanks to the blog post http://www.thomasmaurer.ch/2016/10/create-a-usb-stick-for-windows-server-2016-installation/ I found a way to put the big wim file onto a FAT32 USB stick.
-We have to split it.
+Thanks to the blog post http://www.thomasmaurer.ch/2016/10/create-a-usb-stick-for-windows-server-2016-installation/ I found a way to put the big `install.wim` file onto a FAT32 USB stick. We have to split it.
+
+You need an Windows Server 2016 ISO file, eg. the evaluation ISO or one from MSDN.
+
+And a very good idea is to install the last cumulative update package KB4015217 so you have support for overlay network right after the installation. You can find the package here: http://www.catalog.update.microsoft.com/Search.aspx?q=KB4015217
 
 ```
 mkdir c:\cache
