@@ -73,9 +73,9 @@ Thanks Patrick for all the details.
 
 Thanks to the blog post http://www.thomasmaurer.ch/2016/10/create-a-usb-stick-for-windows-server-2016-installation/ I found a way to put the big `install.wim` file onto a FAT32 USB stick. We have to split it.
 
-You need an Windows Server 2016 ISO file, eg. the evaluation ISO or one from MSDN.
+You need an Windows Server 2016 ISO file, eg. the [evaluation ISO](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016/) or one from MSDN.
 
-And a very good idea is to install the last cumulative update package KB4015217 so you have support for overlay network right after the installation. You can find the package here: http://www.catalog.update.microsoft.com/Search.aspx?q=KB4015217
+And a very good idea is to install the last cumulative update package KB4015217 so you have support for overlay network right after the installation. You can find the package in the [update catalog](http://www.catalog.update.microsoft.com/Search.aspx?q=KB4015217).
 
 ```
 mkdir c:\cache
