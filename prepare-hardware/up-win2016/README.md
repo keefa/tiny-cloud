@@ -80,7 +80,7 @@ And a very good idea is to install the last cumulative update package KB4015217 
 ```
 mkdir c:\cache
 copy C:\vagrant\resources\en_windows_server_2016_x64_dvd_9718492.iso c:\cache\win2016.iso
-copy C:\vagrant\resources\windows10.0-kb4015217-x64_60bfcc7b365f9ab40608e2fb96bc2be8229bc319.msu c:\cache\kb401521.msu
+copy C:\vagrant\resources\windows10.0-kb4015217-x64_60bfcc7b365f9ab40608e2fb96bc2be8229bc319.msu c:\cache\kb4015217.msu
 
 # mount ISO
 $mountResult = Mount-DiskImage (get-item c:\cache\win2016.iso).FullName -PassThru
