@@ -6,4 +6,4 @@ sshopts="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 ssh="ssh $sshopts $user@$prefix$managerNode$suffix"
 
 $ssh docker service rm whoami || true
-$ssh docker service create --name whoami --publish 8000:8000 --env PORT=8000 stefanscherer/whoami:1.2.0
+$ssh docker service create --name whoami --publish 8000:8000 --env PORT=8000 stefanscherer/whoami:1.1.0
