@@ -1,0 +1,16 @@
+[Unit]
+Description=PiCloud Docker Swarm bootstrap
+Requires=docker.service
+#After=network.target
+
+[Service]
+Type=oneshot
+User=pirate
+Group=pirate
+ExecStart=/home/pirate/dockercon/picloud-bootstrap.sh
+RemainAfterExit=true
+ExecStop=/home/pirate/dockercon/destroy-swarm.sh
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
