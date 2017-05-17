@@ -8,18 +8,24 @@ done
 sleep 10
 
 docker swarm leave -f
-docker swarm leave -f
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/nodes.config
 sshopts="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 
-echo "Leaving all swarm nodes"
+echo "Wait for other nodes"
 for node in $managerNodes $workerNodes; do
-  ssh $sshopts $user@$prefix$node$suffix docker swarm leave -f &
+  echo "Wait for node $node"
+  until ping -c1 $prefix$node$suffix &>/dev/null; do :; done
 done
 
-sleep 15
+sleep 10
+
+echo "Leaving all swarm nodes"
+for node in $managerNodes $workerNodes; do
+  echo "Leaving node $node"
+  ssh $sshopts $user@$prefix$node$suffix docker swarm leave -f &
+done
 
 echo "Setting fake-hwclock on all Raspberry Pi's"
 for node in $allPiNodes; do
@@ -32,10 +38,10 @@ echo "Create new Docker swarm"
 echo "Make $managerNode the first manager"
 managerIP=$prefix$managerNode
 echo manager IP: $managerIP
-ssh $sshopts $user@$prefix$managerNode$suffix docker swarm init --advertise-addr $managerIP
-managerToken=$(ssh $sshopts $user@$prefix$managerNode$suffix docker swarm join-token -q manager)
+docker swarm init --advertise-addr $managerIP
+managerToken=$(docker swarm join-token -q manager)
 echo manager token: $managerToken
-workerToken=$(ssh $sshopts $user@$prefix$managerNode$suffix docker swarm join-token -q worker)
+workerToken=$(docker swarm join-token -q worker)
 echo worker token: $workerToken
 
 # create other managers
@@ -55,6 +61,10 @@ done
 echo "Start Visualizer"
 ssh $sshopts $user@$prefix$managerNode$suffix docker service rm visualizer || true
 ssh $sshopts $user@$prefix$managerNode$suffix docker service create --name visualizer --publish 8080:8080 --constraint "node.role==manager" --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock sealsystems/visualizer:1.1.5
+
+echo "Start Portainer"
+ssh $sshopts $user@$prefix$managerNode$suffix docker service rm portainer || true
+ssh $sshopts $user@$prefix$managerNode$suffix docker service create --name portainer --publish 9000:9000 --constraint "node.role==manager" --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock --mount type=bind,src=/home/pirate/portainer-data,dst=/data portainer/portainer:1.12.4
 
 echo "Start Rainbow"
 ssh $sshopts $user@$prefix$managerNode$suffix docker service create --replicas 3 --name rainbow --update-parallelism 2 --update-delay 3s --mount type=bind,src=/sys,dst=/sys sealsystems/rainbow:0.2.0
