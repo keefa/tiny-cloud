@@ -7,9 +7,9 @@ Requires=docker.service
 Type=oneshot
 User=pirate
 Group=pirate
-ExecStart=/home/pirate/dockercon/picloud-bootstrap.sh
+ExecStart=/home/pirate/picloud-bootstrap.sh
 RemainAfterExit=true
-ExecStop=/home/pirate/dockercon/destroy-swarm.sh
+ExecStop=/home/pirate/destroy-swarm.sh
 StandardOutput=journal
 
 [Install]

@@ -24,7 +24,7 @@ sleep 10
 echo "Leaving all swarm nodes"
 for node in $managerNodes $workerNodes; do
   echo "Leaving node $node"
-  ssh $sshopts $user@$prefix$node$suffix docker swarm leave -f &
+  ssh $sshopts $user@$prefix$node$suffix docker swarm leave -f
 done
 
 echo "Setting fake-hwclock on all Raspberry Pi's"
@@ -67,4 +67,4 @@ ssh $sshopts $user@$prefix$managerNode$suffix docker service rm portainer || tru
 ssh $sshopts $user@$prefix$managerNode$suffix docker service create --name portainer --publish 9000:9000 --constraint "node.role==manager" --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock --mount type=bind,src=/home/pirate/portainer-data,dst=/data portainer/portainer:1.12.4
 
 echo "Start Rainbow"
-ssh $sshopts $user@$prefix$managerNode$suffix docker service create --replicas 3 --name rainbow --update-parallelism 2 --update-delay 3s --mount type=bind,src=/sys,dst=/sys sealsystems/rainbow:0.2.0
+ssh $sshopts $user@$prefix$managerNode$suffix docker service create --replicas 3 --name rainbow --update-parallelism 2 --update-delay 3s --mount type=bind,src=/sys,dst=/sys sealsystems/rainbow:1.0.0
