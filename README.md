@@ -14,6 +14,10 @@ Our tiny cloud setup is
 I spoke at DockerCon 2017 about our tiny cloud and showed it there.
 See sub folder `dockercon` for all scripts used for the live demo.
 
-![Rebuilding PiCloud after DockerCon](prepare-hardware/images/after_dockercon.jpg)
+![swarm 2 go talk at DockerCon](dockercon/dockercon-swarm-2-go.png)
+
+The video is online on [YouTube](https://www.youtube.com/watch?v=UiJP-368BLA&list=PLkA60AVN3hh_nihZ1mh6cO3n-uMdF7UlV&index=64).
 
 The slides are [online](https://www.slideshare.net/stefscherer/swarm-2-go-build-a-portable-multiarch-data-center-with-pi-and-up-nodes).
+
+![Rebuilding PiCloud after DockerCon](prepare-hardware/images/after_dockercon.jpg)
